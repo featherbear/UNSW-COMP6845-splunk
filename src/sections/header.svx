@@ -6,7 +6,9 @@ Maintainer: Andrew Wong (andrew.j.wong@unsw.edu.au)
 ```
 
 ```
-Special thanks to Wesley Lacy for preparing the activity resources
+Special thanks to Wesley Lacy for providing the lesson plan and resources
 ```
 
-In this lab we're going to use Splunk!
+In this lab we're going to learn how to use Splunk!  
+We'll start off by figuring out how to set it up, then learn how to ingest a generic log file using both regular expression and delimiter-based field extraction.  
+Finally, we'll have a look at the Boss of the SOC example dataset, and use a Splunk add-on/app!
