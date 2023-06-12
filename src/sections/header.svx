@@ -6,6 +6,7 @@ Maintainer: Andrew Wong (andrew.j.wong@unsw.edu.au)
 ```
 
 ```
-Special thanks to Wesley Lacy for creating the activity resources
+Special thanks to Wesley Lacy for preparing the activity resources
 ```
 
+In this lab we're going to use Splunk!

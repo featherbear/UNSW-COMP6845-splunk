@@ -1,0 +1,32 @@
+<script>
+  import Asciinema from "../lib/Asciinema.svelte";
+  import Youtube from "../lib/Youtube.svelte";
+  import Chip from "../lib/Chip.svelte";
+</script>
+
+## Timelining
+
+> Looking at text is nice and all, but not very informative if we want to discover trends or patterns.  
+> Let's try use Splunk's visualisation features
+
+We can use the `timechart` command to create a timeline that identifies events over a period of time. This could either be to detect a server with higher than normal traffic or you might be looking at destination IP address for data exfiltration.  
+This time we'll look at `syslog` events
+
+> splunk> `index=botsv3 sourcetype=syslog | timechart count by sa`
+
+* `index=botsv3` - Use the `botsv3` index
+* `sourcetype=syslog` - Filter by the `syslog` source type
+* `|` - Pipe results to the next query
+  * `timechart` - Create a timechart visualisation
+  * `count by sa` - Graph the `count` by the field `sa` (source address)
+
+
+**Note: `earliest=1` doesn't work very well with visualisations**
+
+![](images/splunk_botsv3_timeline.png)
+
+> What's that spike at around 9:45AM??
+
+* 9:45AM? Whose 9:45AM is that? America? Sydney? GMT?
+  * How can you confirm?
+

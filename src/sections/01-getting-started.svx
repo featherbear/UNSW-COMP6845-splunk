@@ -6,14 +6,15 @@
 
 ## Getting Started
 
+> If you run into Docker issues during the setup of Splunk, see the [troubleshooting page](#12).  
+> If that doesn't help, go bug your classmates or course staff...
+
 ### Downloading Docker
 
 First we will need to install [Docker](https://www.docker.com/).  
 You can download this from the [official website](https://www.docker.com/), or your preferred choice of package manager.
 
-
-_You may use an alternative like [Podman](https://podman.io/) or [Colima](https://github.com/abiosoft/colima) but we cannot guarantee the compatibility of this tutorial._
-
+_You may use an alternative like [Podman](https://podman.io/) or [Colima](https://github.com/abiosoft/colima) but we cannot guarantee their compatibility for this lab._
 
 ### Downloading Splunk (Docker image)
 
@@ -38,9 +39,14 @@ The below command will start Splunk in a Docker container, which you can access 
 * `splunk/splunk` - The docker image name for Splunk
 * `start` - Arguments to pass to the Splunk image
 
-Splunk has finished starting when you can see the line `Ansible playbook complete, will begin streaming splunkd_stderr.log`
+Splunk has finished starting when you can see the output `Ansible playbook complete, will begin streaming splunkd_stderr.log`
 
 <Asciinema path="docker_run.cast" options={{cols: 150, speed: 5}} />
 
-Leave the terminal window open in the background, and navigate to `http://localhost:8000` in your preferred web browser.  
+---
+
+Leave the terminal window open in the background, and navigate to `http://localhost:8000` in your preferred web browser.
+
 You can log in with username `admin` and password `helloworld` (or whatever you set)
+
+![](images/splunk_login.png)

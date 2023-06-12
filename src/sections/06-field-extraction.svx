@@ -1,0 +1,78 @@
+<script>
+
+  import Youtube from "../lib/Youtube.svelte";
+
+</script>
+
+<!--
+## Data Normalisation
+
+Now that the data has been ingested into Splunk, we need to normalise the data. This is the process of mapping fields in the log entries to standard field names. Normalising data is a critical step when ingesting data so that search queries are effective.
+
+An example of normalising data is where we have two indexes:
+
+* One index has a Source IP address field called `Src_IP`
+* Another index has a Source IP address field called `IP_Src`
+
+Without data normalisation, in order to search both indexes we must construct a query that targets both `Src_IP` and `IP_Src`.  
+If we had normalised the data between indexes, we could make a simple query that targets only `src_ip` (e.g)
+-->
+
+## Field Extraction
+
+At the moment, if we try to query the logs in Splunk we won't get very far..  
+This is because our custom source type `my_own_log_type` doesn't have a mapping of where data should be found within the log entry.
+
+![](images/splunk_no_extracted_fields.png)
+
+---
+
+We can create our mapping by selecting [**Extract fields**](http://localhost:8000/en-US/app/search/field_extractor?sourcetype=my_own_log_type).  
+
+> You can also navigate to **[Settings]** -> **[Fields]** -> **[Field extractions]** -> **[Open Field Extractor]**
+
+Select the "Time Range" drop down and select "All Time" as the date filter to show the log entries.
+Select one of the log entries that appears, it will be highlighted and also shown above the page.
+
+We can then try both methods of field extractions, **delimiters** and **regular expressions**.
+
+### Delimiters
+
+Delimiters are characters or sequences of characters that are used to separate or mark the boundaries between different pieces of data within a larger data structure or file. Here are some common examples of standard delimiters:
+
+-	Space (` `): A space delimiter is a character that is used to separate data values or tokens within a larger string or file. The most common space delimiter is the space character which is used to separate words in natural language and data values in programming languages.
+-	Comma (`,`): Often used to separate values in a list or a data file. For example, in a CSV file (comma-separated values), each data value is separated by a comma.
+-	Tab (`\t`): Used to separate columns in a table or spreadsheet. In a TSV file (tab-separated values), each data value is separated by a tab.
+-	Pipe (`|`): Used as a delimiter in many file formats, such as the Linux command output or log files. Each field is separated by a pipe symbol.
+-	Other: Used when a standard delimiter hasn't been used to separate the fields. Other can be anything that is a consistent pattern in the log file. For example, the `^` character, or perhaps `-`.
+
+If there is a specific character that separates different fields within an entry, we can try to use the delimiter-based extraction.
+
+> Try out the different delimiter types for the log entry, does it work well?
+
+_Delimiter-based extraction doesn't always work so well because of (e.g.) extraneous `]` and `"` characters that may appear_
+
+### Regular Expressions
+
+In Splunk, regex-based extractions can be done manually (by means of entering a regex string), or graphically (by selecting parts of the entry).  
+We can highlight the values we want to extract, then assign it a field name.
+
+Let's create a regex-based extraction with the following fields:
+
+* `src_ip`
+* `http_method`
+* `path`
+* `http_version`
+* `http_status`
+* `user_agent`
+
+### Video Instructions
+
+<Youtube id="1EX7Xh3sL94" />
+
+---
+
+If we perform a search with the query [`index=websftp sourcetype=my_own_log_type earliest=1`](http://localhost:8000/en-US/app/search/search?q=search%20index%3Dwebsftp%20sourcetype%3Dmy_own_log_type%20earliest%3D1), we can see that our fields have been extracted from the logs!  
+**Note: Expand the log entries and toggle the visibilty of the desired fields**
+
+![](images/splunk_extracted_fields.png)

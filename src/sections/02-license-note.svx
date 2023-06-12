@@ -1,0 +1,10 @@
+## License Note
+
+Upon the initial setup of Splunk, you are given a 60-day Splunk Enterprise Trial license, which gives access to all features of Splunk Enterprise.  
+The Splunk Enterprise Trial license however <u>only allows you to index 500 MB of data per day</u>.
+
+A Free license also exists (no time limit) however with less features to Splunk Enterprise. Read more about the [license information and restrictions here](https://docs.splunk.com/Documentation/Splunk/9.0.5/Admin/TypesofSplunklicenses#Other_types_of_licenses).
+
+When running Splunk on Docker, all data (including the instance license) is bound to the Docker container (unless a volume / bind mount was made).
+
+If the trial period elapses, one can simply recreate the Docker container and start again (logs will need to be ingested again)

@@ -1,0 +1,66 @@
+<script>
+  import Asciinema from "../lib/Asciinema.svelte";
+  import Youtube from "../lib/Youtube.svelte";
+  import Chip from "../lib/Chip.svelte";
+</script>
+
+## AWS CloudWatch VPC Flow Logs
+
+```
+2 622676721278 eni-0536faba73134a9b7 13.125.33.130 172.16.0.178 40396 11211 17 1 50 1534778806 1534778866 ACCEPT OK
+```
+
+> See [https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html)  
+> Example logs: [https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-records-examples.html](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-records-examples.html)
+
+We should review the example logs and check that the fields match up with our `botsv3` dataset entries.  
+This will require some assumptions but this is all part of the investigation.
+
+---
+
+Now that we know how the logs work lets parse them to their own fields. 
+
+---
+
+### Method 1 - Manual source type setup
+
+Remember when we talked about [field extraction](#5)? These logs looks like good candidates for a **delimiter-based extraction**!
+
+We can run the SPL query below
+
+> splunk> `index=botsv3 sourcetype="aws:cloudwatchlogs:vpcflow" earliest=1`
+
+In the field discovery column, we can then press **+ Extract New Fields** to start the field extraction process for `aws:cloudwatchlogs:vpcflow` source types!
+
+![](images/splunk_botsv3_vpcflow_extraction.png)
+
+---
+
+### Method 2 - Be lazy, use someone else's work (e.g. the official AWS Splunk app)
+
+> Splunk applications work on datasets within Splunk to either create new datasets, or to otherwise process the data in another manner.
+
+In our Splunk homepage, press **+ Find More Apps**
+
+![](images/splunk_add_app.png)
+
+Then search for `Splunk Add-on for Amazon Web Services (AWS)`, and presss **Install**.
+
+You will be prompted to log-in, which means **it's first time to [sign-up](https://www.splunk.com/en_us/sign-up.html)**!
+
+* Use your university email address (`...@unsw.edu.au`)
+* You will be sent a verification email that you must respond to within 30 minutes
+
+![](images/splunk_installing.png)
+
+---
+
+The AWS Splunk addon adds the field extraction for the `aws:cloudwatchlogs:vpcflow` source type ([along with the other AWS source types](`aws:cloudwatchlogs:vpcflow`)).
+
+With the same SPL query as before, we can now see extra fields
+
+> splunk> `index=botsv3 sourcetype="aws:cloudwatchlogs:vpcflow" earliest=1`
+
+**Note: Expand the log entries and toggle the visibilty of the desired fields**
+
+![](images/splunk_botsv3_vpcflow_withapp.png)

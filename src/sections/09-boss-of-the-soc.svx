@@ -1,0 +1,62 @@
+<script>
+  import Asciinema from "../lib/Asciinema.svelte";
+  import Youtube from "../lib/Youtube.svelte";
+  import Chip from "../lib/Chip.svelte";
+</script>
+
+## Boss of the SOC
+
+Splunk offers a CTF type challenge called 'Boss of the SOC'. This is a sample security dataset and CTF platform for information security professionals, researchers, students, and enthusiasts.
+
+The dataset has 107 source types and over 2M logs included, ranging from Windows Event Logs to AWS VPC flow logs. This would be the closest thing to what you would see in a SIEM in a commercial production environment.
+
+### Setup
+
+In another terminal (keep the current terminal that's running Splunk open!!!), run the below command to start a `bash` shell inside of the Splunk container.
+
+> $> `docker exec -it $(docker ps -qf ancestor="splunk/splunk") bash`
+
+Then execute the following commands
+
+```sh
+cd etc/apps # Navigate to [SPLUNK]/etc/apps
+sudo wget https://botsdataset.s3.amazonaws.com/botsv3/botsv3_data_set.tgz # Download the dataset
+sudo tar zxvf botsv3_data_set.tgz # Extract the dataset
+```
+
+After, exit the shell and restart the container.
+
+> $> `docker container restart $(docker ps -qf ancestor="splunk/splunk")`
+
+<Asciinema path="docker_splunk_botsv3.cast" options={{speed: 5, cols: 150}} />
+
+### Validation
+
+To verify that we have the Boss of the SOC logs ingested, we can run the below SPL query and expect some output
+
+> splunk> `index=botsv3 earliest=1`
+
+![](images/splunk_botsv3.png)
+
+---
+
+### Parsing Fields
+
+If we scroll down and look at entries of `sourcetype=aws:cloudwatchlogs:vpcflow`.. it doesn't seem very usable to us at the moment...
+
+![](images/splunk_botsv3_vpcflow_unrecognised.png)
+
+Based on source type we know these are AWS CloudWatch VPC flow logs.. whatever those are...
+
+```
+2 622676721278 eni-0536faba73134a9b7 13.125.33.130 172.16.0.178 40396 11211 17 1 50 1534778806 1534778866 ACCEPT OK
+```
+
+On first glance, we can see what likely appears to be 2 IP addresses and maybe ports... but without knowing the proper structure we're only assuming.
+
+---
+
+Before continuing on to the next page which has the answer we encourage you to do some research on AWS VPC flow logs and interpret the log entry above mapping each log part to the correct field.
+
+> Task: Research [what is an AWS CloudWatch VPC flow log](https://lmgtfy.app/?q=What+is+an+AWS+CloudWatch+VPC+flow+log)
+

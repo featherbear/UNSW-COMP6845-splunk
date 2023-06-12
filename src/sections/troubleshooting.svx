@@ -1,0 +1,34 @@
+## Troubleshooting
+
+### (General) Docker won't start
+
+Check that emulation is on in your BIOS settings. It might say something like "VT-d / AMD-V"
+
+---
+
+### (Virtual Machine) Docker won't start
+
+Check that emulation is on in your VM settings
+
+---
+
+### (Windows) Docker won't start
+
+Check that `DockerDesktopVM` is running in Hyper-V Manager
+
+---
+
+### (Linux) Cannot interact with Docker
+
+_See https://docs.docker.com/engine/install/linux-postinstall/_
+
+```
+permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock
+dial unix /var/run/docker.sock: connect: permission denied
+```
+
+Solution: Run with `sudo`, else add your user to the Docker group
+
+> $> `sudo groupadd docker; sudo usermod -aG docker $USER`
+
+After you have added your user to the group, re-login into your account (or just reboot)

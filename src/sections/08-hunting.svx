@@ -1,0 +1,50 @@
+<script>
+
+  import Youtube from "../lib/Youtube.svelte";
+  import Chip from "../lib/Chip.svelte";
+
+</script>
+
+## Hunting
+
+Let's have a look at our recently ingested (and field-extracted) logs!
+
+As a reminder, here are the fields and values on each log entry of our `access.log` chunk (assuming you've been following the instructions)
+
+```
+index: websftp
+sourcetype: my_own_log_type
+host: webserver_or_something
+```
+
+> Try to write a query to pull all the entries from our `access.log` chunk!
+
+* Remember, you don't need to use all three fields above!
+* Also keep in mind to set the **time range** (or use the `earliest` keyword)
+
+---
+
+> splunk> `index=websftp`
+
+![](images/splunk_index_websftp.png)
+
+---
+
+When looking through the logs, it isn't very effective to just mindlessly scroll through all the events, hoping that we find some anomaly or interesting event.  
+We should try to be methodic in how we search!
+
+In our case, it would be helpful to have some directive... How about searching for the activity of a device given the IP address `5.134.148.228`?
+
+**Answer**
+
+> splunk> `index=websftp src_ip=5.134.148.228`
+
+**Follow-up questions**
+
+* What was the device's user agent?
+* What did the device try to access?
+  * What was their HTTP response codes?
+* Are there any other IP addresses with the same user agent?
+  * What are their IP addresses, show unique addresses in a table
+
+<!-- `index=websftp user_agent="Mozilla/5.0 (Linux; Android 4.4.2; CHM-U01 Build/HonorCHM-U01) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.109 Mobile Safari/537.36" | table src_ip | dedup src_ip` There are 18 IP addresses in total that share the same user agent -->

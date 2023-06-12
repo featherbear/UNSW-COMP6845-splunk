@@ -1,13 +1,27 @@
 ## Exercises
 
-### Exercise 1
+### Exercise 1 ([from Hunting](#7))
 
-...
+> In the `websftp` dataset (specifically the first chunk of `access.log`)
 
-### Exercise 2
+* Investigate the activity the IP address `5.134.148.228`
+* What was the device's user agent?
+* What did the device try to access?
+  * What was their HTTP response codes?
+* Are there any other IP addresses with the same user agent?
+  * What are their IP addresses, show unique addresses in a table
 
-...
+### Exercise 2 ([from Timelining](#10))
+
+![](images/splunk_botsv3_timeline.png)
+
+* Explain the activity spike at around 9:45AM
+* Confirm the locale of 9:45AM (which timezone?)
 
 ### Exercise 3
 
-...
+> In the `botsv3` dataset
+
+* What virus (file) was found on the computer name `BGIST-L`
+* What was the virus that was found?
+* What action was taken?

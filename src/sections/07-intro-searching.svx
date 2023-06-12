@@ -1,0 +1,56 @@
+<script>
+
+  import Youtube from "../lib/Youtube.svelte";
+  import Chip from "../lib/Chip.svelte";
+
+</script>
+
+## Introduction to Searching
+
+_So Splunk is like a giant database, right?_  
+_So therefore, to get information back, we need to make queries to the database, right?_  
+_So if we need to make queries, there should be some sort of query language, right?_  
+_Maybe something like SQL, right?_
+
+Splunk uses its own query language called **Search Processing Language** (**SPL**) ([more info here](https://www.splunk.com/pdfs/solution-guides/splunk-quick-reference-guide.pdf)).  
+Apart from the basic search constructs of a query langage, SPL also supports chaining queries (i.e. piping), visualisation commands (i.e. graphing), and data massaging commands (i.e. renaming fields)
+
+(For the future you, Splunk supports basic string searching on the entire log entry without needing to specify a field)
+
+> This lab covers some of the basic SPL queries / keywords / syntax, but is not an extensive guide.  
+> When in doubt, consult [@featherbear](https://featherbear.cc), or better yet - Google.
+
+---
+
+### The Search Interface
+
+> Available here - [http://localhost:8000/en-US/app/search/search](http://localhost:8000/en-US/app/search/search)
+
+![](images/splunk_search_interface.png)
+
+* <Chip background="#ff7718">Orange</Chip> - Splunk query input field -  Enter the SPL query to run here
+* <Chip background="#14ac40">Green</Chip> - Data tab - Different output formats of the query result
+* <Chip background="#009ae6">Blue</Chip> - Field discovery - Information and statistics about specific fields
+* <Chip background="#9f40a0">Purple</Chip> - Time range selection - Selects the time range for which logs should be included. Value can be set in the SPL query.
+* <Chip background="#eb1a22">Red</Chip> - The <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Search/Changethesearchmode">search mode</a> that should be used. Use "Fast" at the expense of verbosity and debuggability.
+
+---
+
+### Which Index?
+
+In large organisations there may be hundreds of indexes... How do we know what indexes are available, or which to use?
+
+Generally, an index covers a specific purpose, such as: firewall events, load balancer alerts, office audit logs, Windows Event Log, etc... 
+
+Try run the SPL below, it will return a table of the known `index` values (i.e. all the indexes)
+
+> splunk> `index=* earliest=1 | table index | dedup index`
+
+* `index=*` - Select all indexes
+* `earliest=1` - Find entries with epoch time >=1 (basically everything)
+* `|` - Pipe results to the next query
+  * `table index` - Visualise a table containing the columns: `index`
+* `|` - Pipe results to the next query
+  * `dedup index` - Deduplicate entries with the same column values in `index`
+
+
