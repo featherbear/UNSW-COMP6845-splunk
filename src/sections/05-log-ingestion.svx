@@ -17,7 +17,7 @@ An index can be considered as a 'collection' of data with its own purpose (i.e. 
 2. Press **Upload files from my computer**
 3. Press **Select File** and choose your log chunk, wait for the data preview generation to finish
 4. Select the **Source type** to be `Default Settings`
-5. Adjust the **Time zone** to correctly normalise the log event times (if not already automatically determined)
+5. Adjust the **timezone** to correctly normalise the log event times (if not already automatically determined)
 6. Save the **Source type** as `my_own_log_type`
 7. Create an **index** called `websftp`
 8. Set the **Host field value** to `webserver_or_something`

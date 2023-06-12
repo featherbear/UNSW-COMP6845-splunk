@@ -1,15 +1,14 @@
 ## About Log Contexts
 
-* Time(zone)
-* Type
+Generally speaking, Splunk is used as a SIEM to aggregate logs - however nothing is stopping us from ingesting a _log2timeline_-style export.  
+Before we do anything to do with logs, we want to ensure that the context of the story / timeline we are exploring is correct.
 
+Logs can come from all sorts of places, and **timezones!** As such, the the timezones could be in a range of formats from UTC, GMT, EPOCH etc.  
+As a Splunk engineer, we need to ensure that we aware of the timezone for the logs, as well as our own system.
 
-Generally speaking, Splunk is used as a SIEM to aggregate logs - however nothing is stopping us from ingesting a _log2timeline_-style export.
-
-The first thing we need to do if we want to tell a story is tell the story in the correct time zone. Logs can come from all sorts of places and as such could be in a range of formats from UTC, GMT, EPOCH etc. So, what we as Splunk engineers need to do is set the time zone. 
-
-To do this we can see a time in the log file with the time zone offset of +0000, we now what time zone to set. This is important for later when we search based of time as Splunk can be configured based on time zone set in the users’ settings. 
-To do this we will select the Extraction = Advanced and the time zone drop down Set the time zone to ‘GMT’ and click the green ‘Next Button’.
+To identify the timezone from a log file, we should look into the contents of the log file. 
+If we can see a timestamp in the log file with an absolute timezone offset (e.g. +0000, or +1000) - We can be sure of the timestamp's relative (and absolute) time.  
+However, if a timestamp in the log file is ambiguous, we may need to seek more context surrounding the file (where did we obtain the log file from?)
 
 ---
 
