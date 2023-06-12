@@ -6,5 +6,41 @@
 
 ## Getting Started
 
-...
+### Downloading Docker
 
+First we will need to install [Docker](https://www.docker.com/).  
+You can download this from the [official website](https://www.docker.com/), or your preferred choice of package manager.
+
+
+_You may use an alternative like [Podman](https://podman.io/) or [Colima](https://github.com/abiosoft/colima) but we cannot guarantee the compatibility of this tutorial._
+
+
+### Downloading Splunk (Docker image)
+
+> $> `docker pull splunk/splunk`
+
+<Asciinema path="docker_pull.cast" options={{speed: 20, rows: 16}} />
+
+### Running Splunk via Docker
+
+The below command will start Splunk in a Docker container, which you can access via `http://localhost:8000`
+
+> $> `docker run -it -e SPLUNK_START_ARGS=--accept-license -e SPLUNK_PASSWORD=helloworld -p 8000:8000 -p 8089:8089 splunk/splunk start`
+
+* `run` - Docker run command
+* `-it` - Run interactive with a terminal (allows you to interact with the container via the terminal)
+* `-e SPLUNK_START_ARGS=--accept-license` - Set the environment variable `SPLUNK_START_ARGS`
+* `-e SPLUNK_PASSWORD=helloworld` - Set the environment variable `SPLUNK_PASSWORD`
+  * You may change this to a password of your choice, as long as it conforms to the [Splunk Enterprise password policy](https://docs.splunk.com/Documentation/Splunk/latest/Security/Configurepasswordsinspecfile)  
+  * (Default: Minimum of 8 characters)
+* `-p 8000:8000` - Bind your machine's port `8000` to the container's port `8000`
+* `-p 8089:8089` - Bind your machine's port `8089` to the container's port `8089`
+* `splunk/splunk` - The docker image name for Splunk
+* `start` - Arguments to pass to the Splunk image
+
+Splunk has finished starting when you can see the line `Ansible playbook complete, will begin streaming splunkd_stderr.log`
+
+<Asciinema path="docker_run.cast" options={{cols: 150, speed: 5}} />
+
+Leave the terminal window open in the background, and navigate to `http://localhost:8000` in your preferred web browser.  
+You can log in with username `admin` and password `helloworld` (or whatever you set)
