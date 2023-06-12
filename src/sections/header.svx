@@ -1,0 +1,11 @@
+# COMP6845 | Splunk
+
+```
+Version: 0.0 (unreleased)
+Maintainer: Andrew Wong (andrew.j.wong@unsw.edu.au)
+```
+
+```
+Special thanks to Wesley Lacy for creating the activity resources
+```
+

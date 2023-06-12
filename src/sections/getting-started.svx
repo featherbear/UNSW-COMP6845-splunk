@@ -1,0 +1,10 @@
+<script>
+
+  import Asciinema from "../lib/Asciinema.svelte";
+
+</script>
+
+## Getting Started
+
+...
+
