@@ -11,9 +11,6 @@ jobs:
   build-deploy:
     runs-on: ubuntu-22.04
     steps:
-    - uses: webfactory/ssh-agent@v0.7.0
-      with:
-        ssh-private-key: ${{ secrets.BASE_KEY }}
 
     - uses: actions/checkout@v3
     - uses: extractions/setup-just@v1
