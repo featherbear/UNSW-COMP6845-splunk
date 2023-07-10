@@ -11,19 +11,24 @@ jobs:
   build-deploy:
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v3
+    - uses: webfactory/ssh-agent@v0.7.0
+      with:
+        ssh-private-key: ${{ secrets.BASE_KEY }}
 
+    - uses: actions/checkout@v3
+    - uses: extractions/setup-just@v1
     - uses: actions/setup-node@v3
       with:
-        node-version: '16.x'
+        node-version: '18.x'
 
-    - name: Install packages
-      run: yarn install
+    - name: Setup base
+      run: just init
 
     - name: Build
       run: |
-        yarn build
+        just build
         touch ./dist/.nojekyll
+
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.3.1
       env:
