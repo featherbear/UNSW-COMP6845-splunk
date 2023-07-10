@@ -2,7 +2,7 @@
   just --list
 
 @init:
-  rm -rf base
+  rm -rf base dist node_modules
   git clone https://github.com/featherbear/UNSW-COMP6845-base base
   yarn --cwd base
   yarn
