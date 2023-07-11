@@ -4,7 +4,7 @@ const newer = require('gulp-newer')
 function setupCopier(srcGlob, destPath, onlyCheckNewer) {
     let runner = function (next) {
         let pipe = src(srcGlob)
-        if (!onlyCheckNewer) pipe = pipe.pipe(newer(destPath))
+        if (onlyCheckNewer) pipe = pipe.pipe(newer(destPath))
         pipe.pipe(dest(destPath))
         return next()
     }
