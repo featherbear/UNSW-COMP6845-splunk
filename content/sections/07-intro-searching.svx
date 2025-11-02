@@ -18,7 +18,7 @@ Apart from the basic search constructs of a query langage, SPL also supports cha
 (For the future you, Splunk supports basic string searching on the entire log entry without needing to specify a field)
 
 > This lab covers some of the basic SPL queries / keywords / syntax, but is not an extensive guide.  
-> When in doubt, consult [@featherbear](https://featherbear.cc), or better yet - Google.
+> When in doubt, consult Google.
 
 ---
 
