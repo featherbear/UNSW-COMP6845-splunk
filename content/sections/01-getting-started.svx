@@ -26,12 +26,12 @@ _You may use an alternative like [Podman](https://podman.io/) or [Colima](https:
 
 The below command will start Splunk in a Docker container, which you can access via `http://localhost:8000`
 
-> $> `docker run -it -e SPLUNK_START_ARGS=--accept-license -e SPLUNK_PASSWORD=helloworld -p 8000:8000 -p 8089:8089 splunk/splunk start`
+> $> `docker run -it -e SPLUNK_GENERAL_TERMS=--accept-sgt-current-at-splunk-com -e SPLUNK_START_ARGS=--accept-license -e SPLUNK_PASSWORD=helloworld -p 8000:8000 -p 8089:8089 splunk/splunk start`
 
 * `run` - Docker run command
 * `-it` - Run interactive with a terminal (allows you to interact with the container via the terminal)
-* `-e SPLUNK_START_ARGS=--accept-license` - Set the environment variable `SPLUNK_START_ARGS`
-* `-e SPLUNK_PASSWORD=helloworld` - Set the environment variable `SPLUNK_PASSWORD`
+* `-e SPLUNK_GENERAL_TERMS=--accept-sgt-current-at-splunk-com -e SPLUNK_START_ARGS=--accept-license` - Accepts the [Splunk license](https://www.splunk.com/en_us/legal/splunk-general-terms.html)
+* `-e SPLUNK_PASSWORD=helloworld` - Set the admin password
   * You may change this to a password of your choice, as long as it conforms to the [Splunk Enterprise password policy](https://docs.splunk.com/Documentation/Splunk/latest/Security/Configurepasswordsinspecfile)  
   * (Default: Minimum of 8 characters)
 * `-p 8000:8000` - Bind your machine's port `8000` to the container's port `8000`
