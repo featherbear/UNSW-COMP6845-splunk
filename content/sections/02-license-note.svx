@@ -7,4 +7,4 @@ A Free license also exists (no time limit) however with less features to Splunk 
 
 When running Splunk on Docker, all data (including the instance license) is bound to the Docker container (unless a volume / bind mount was made).
 
-If the trial period elapses, one can simply recreate the Docker container and start again (logs will need to be ingested again)
+If the trial period elapses, you can simply recreate the Docker container and start again (logs will need to be ingested again)

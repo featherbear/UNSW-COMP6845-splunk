@@ -1,9 +1,8 @@
 import GettingStarted from "./sections/01-getting-started.svx";
 import LicenseNote from "./sections/02-license-note.svx";
 import LogContexts from "./sections/03-log-contexts.svx";
-import LogSplitting from "./sections/04-log-splitting.svx";
-import LogIngestion from "./sections/05-log-ingestion.svx";
-import FieldExtraction from "./sections/06-field-extraction.svx";
+import BuiltinLogIngestion from "./sections/04-builtin-log-ingestion.svx";
+import ManualLogIngestion from "./sections/05-manual-log-ingestion.svx";
 import IntroSearching from "./sections/07-intro-searching.svx";
 import Hunting from "./sections/08-hunting.svx";
 import BossOfTheSOC from "./sections/09-boss-of-the-soc.svx";
@@ -18,9 +17,8 @@ const pages = [
     ["Getting Started", GettingStarted],
     ["License Note", LicenseNote],
     ["Log Contexts", LogContexts],
-    ["Log Splitting", LogSplitting],
-    ["Log Ingestion", LogIngestion],
-    ["Field Extraction", FieldExtraction],
+    ["Built-in Log Ingestion", BuiltinLogIngestion],
+    ["Manual Log Ingestion", ManualLogIngestion],
     ["Introduction to Searching", IntroSearching],
     ["Hunting", Hunting],
     ["BotS (1)", BossOfTheSOC],

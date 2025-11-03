@@ -7,7 +7,7 @@
 
 ## Hunting
 
-Let's have a look at our recently ingested (and field-extracted) logs!
+Let's have a look at our recently ingested logs!
 
 As a reminder, here are the fields and values on each log entry of our `access.log` chunk (assuming you've been following the instructions)
 
@@ -33,11 +33,11 @@ host: webserver_or_something
 When looking through the logs, it isn't very effective to just mindlessly scroll through all the events, hoping that we find some anomaly or interesting event.  
 We should try to be methodic in how we search!
 
-In our case, it would be helpful to have some directive... How about searching for the activity of a device given the IP address `5.134.148.228`?
+In our case, it would be helpful to have some directive... How about searching for the activity of a device given the IP address `91.99.30.32`?
 
 **Answer**
 
-> splunk> `index=websftp src_ip=5.134.148.228`
+> splunk> `index=websftp src_ip=91.99.30.32`
 
 **Follow-up questions**
 

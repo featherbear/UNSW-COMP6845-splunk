@@ -18,10 +18,12 @@ However, if a timestamp in the log file is ambiguous, we may need to seek more c
 
 ### Lab Resource Download 
 
-For the first part of this lab, we will be using a sample web server access log file licensed in the public domain.
+For the first part of this lab, we will be using a modified excerpt from a sample web server access log file (public domain).
 
-Download the `6845 - Web Server Access Logs.zip` file from [OpenLearning](https://www.openlearning.com/unswcourses/courses/digital-forensics/downloads).  
-Confirm that the MD5 hashsum of the extracted `access.log` file matches `528bcc8e31b4c376ab66479e7a370e6b`
+Download the `2025-access-log.zip` file from [Google Drive](https://drive.google.com/uc?export=download&id=1Beso6HHk63uDz2S8f8VZnukhma1PZxTB).  
+
+* MD5(2025-access-log.zip): `7a2eacfd0afbc29209166c5740032bfc`
+* Extracted MD5(access.log): `a08b53da05c842ceb119bd570ae653ae`
 
 ---
 

@@ -1,0 +1,24 @@
+<script>
+
+  import Youtube from "../lib/Youtube.svelte";
+
+</script>
+
+## Built-in Log Ingestion
+
+We will now ingest the `access.log` file into a new Splunk _index_ called `websftp`.  
+An index can be considered as a 'collection' of data with its own purpose (i.e. logical grouping) or requirements (e.g. access privileges, retention periods)
+
+> We will be using the built-in `access_combined` **source type** for `access.log`.  
+> Go to the next page if you want to create your own source type
+
+### Text Instructions
+
+1. In Splunk, select **Add Data**
+2. Press **Upload files from my computer**
+3. Press **Select File** and choose your log file, wait for the data preview generation to finish
+4. Select the **Source type** to be `access_combined`
+5. Adjust the **timezone** to correctly normalise the log event times (if not already automatically determined)
+6. Create an **index** called `websftp` (or leave as is)
+7. Set the **Host field value** to `webserver_or_something` (or leave as is)
+8. Submit the file for uploading and processing
