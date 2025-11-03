@@ -6,6 +6,7 @@ on:
   push:
     branches:
     - master
+    - "2025"
 
 jobs:
   build-deploy:
